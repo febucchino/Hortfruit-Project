@@ -1,6 +1,7 @@
 package com.example.hortfruit.model.product.dto;
 
 import com.example.hortfruit.model.product.Availability;
+import com.example.hortfruit.model.product.Product;
 import lombok.*;
 
 @Data
@@ -13,4 +14,8 @@ public class ProductDTO {
     private Double price;
     private Integer quantity;
     private Availability availability;
+
+    public Product convertToProduct() {
+        return new Product(productName, price, quantity, availability);
+    }
 }

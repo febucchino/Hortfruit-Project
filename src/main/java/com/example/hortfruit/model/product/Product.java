@@ -1,12 +1,25 @@
 package com.example.hortfruit.model.product;
 
 import com.example.hortfruit.model.product.dto.ProductDTOResponse;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "produto")
 public class Product {
+
+    public Product(String productName, Double price, Integer quantity, Availability availability) {
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+        this.availability = availability;
+    }
 
     @Id
     @Column(name = "id_produto")
