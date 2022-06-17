@@ -64,4 +64,9 @@ public class ProductController {
         productService.deleteProductById(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/suppliers/{supplierId}")
+    public ResponseEntity<?> findAllProductsBySupplierId(@PathVariable Long supplierId){
+        return ResponseEntity.ok(productService.findAllProductsBySupplierId(supplierId));
+    }
 }

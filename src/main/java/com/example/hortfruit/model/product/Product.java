@@ -1,6 +1,7 @@
 package com.example.hortfruit.model.product;
 
 import com.example.hortfruit.model.product.dto.ProductDTOResponse;
+import com.example.hortfruit.model.supplier.Supplier;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,11 +15,12 @@ import javax.persistence.*;
 @Table(name = "produto")
 public class Product {
 
-    public Product(String productName, Double price, Integer quantity, Availability availability) {
+    public Product(String productName, Double price, Integer quantity, Availability availability, Supplier supplier) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
         this.availability = availability;
+        this.supplier = supplier;
     }
 
     @Id
@@ -39,6 +41,10 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Availability availability;
 
+    @ManyToOne
+    @JoinColumn(name = "id_fornecedor")
+    private Supplier supplier;
+
     public ProductDTOResponse toDTO(){
         return ProductDTOResponse.builder()
                 .id(getId())
@@ -47,47 +53,5 @@ public class Product {
                 .quantity(getQuantity())
                 .availability(getAvailability())
                 .build();
-    }
-
-    // private Fornecedor fornecedor;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Availability getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(Availability availability) {
-        this.availability = availability;
     }
 }
