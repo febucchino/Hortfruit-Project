@@ -71,7 +71,7 @@ public class ProductService {
 
         return availableProducts
                 .stream()
-                .filter(product -> Availability.valueOf(availability.toString()).equals(product.getAvailability()))
+                .filter(product -> availability.equals(product.getAvailability()))
                 .map(product -> ProductDTOResponse
                         .builder()
                         .id(product.getId())
