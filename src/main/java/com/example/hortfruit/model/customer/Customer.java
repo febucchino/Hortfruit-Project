@@ -33,6 +33,10 @@ public class Customer {
     @Column(name = "telefone")
     private String telephone;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco")
+    private Address address;
+
     public CustomerDTOResponse toDTO(){
         return CustomerDTOResponse.builder()
                 .id(getId())

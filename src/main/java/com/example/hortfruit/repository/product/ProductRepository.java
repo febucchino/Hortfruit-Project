@@ -1,7 +1,6 @@
 package com.example.hortfruit.repository.product;
 
 import com.example.hortfruit.model.product.Product;
-import com.example.hortfruit.model.product.dto.ProductDTOResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
