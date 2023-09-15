@@ -44,8 +44,6 @@ public class SupplierService {
 
     public List<SupplierDTOResponse> findSupplierById(Long id) {
 
-        SupplierDTOResponse supplierResponse = new SupplierDTOResponse();
-
         return supplierRepository.findById(id)
                 .stream()
                 .map(supplier -> SupplierDTOResponse

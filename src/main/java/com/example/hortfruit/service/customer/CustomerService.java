@@ -4,7 +4,7 @@ import com.example.hortfruit.model.customer.Customer;
 import com.example.hortfruit.model.customer.dto.CustomerDTO;
 import com.example.hortfruit.model.customer.dto.CustomerDTOResponse;
 import com.example.hortfruit.repository.customer.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,14 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
-    @Autowired
     private final CustomerRepository customerRepository;
-
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     public List<CustomerDTOResponse> findAllCustomer() {
         return customerRepository.findAll()
@@ -30,6 +26,7 @@ public class CustomerService {
                         .name(customer.getName())
                         .cpf(customer.getCpf())
                         .telephone(customer.getTelephone())
+                        .address(customer.getAddress())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -49,6 +46,7 @@ public class CustomerService {
                         .name(customer.getName())
                         .cpf(customer.getCpf())
                         .telephone(customer.getTelephone())
+                        .address(customer.getAddress())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -62,6 +60,7 @@ public class CustomerService {
                         .name(customerDTO.getName())
                         .cpf(customerDTO.getCpf())
                         .telephone(customerDTO.getTelephone())
+                        .address(customer.getAddress())
                         .build())
                 .ifPresent(customerRepository::save);
     }

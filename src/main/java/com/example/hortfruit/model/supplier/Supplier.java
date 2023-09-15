@@ -38,9 +38,6 @@ public class Supplier {
 
     private String email;
 
-    @OneToMany(mappedBy = "supplier")
-    private List<Product> products;
-
     public SupplierDTOResponse toDTO(){
         return SupplierDTOResponse.builder()
                 .id(getId())

@@ -1,6 +1,5 @@
 package com.example.hortfruit.model.purchase;
 
-import com.example.hortfruit.model.customer.Address;
 import com.example.hortfruit.model.customer.Customer;
 import com.example.hortfruit.model.purchaseItem.PurchaseItem;
 import lombok.*;
@@ -32,10 +31,6 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "id_endereco")
-    private Address address;
 
     @Column(name = "data_pedido", columnDefinition = "TIMESTAMP")
     private LocalDate purchaseDate;

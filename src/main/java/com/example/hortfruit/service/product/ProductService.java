@@ -4,6 +4,7 @@ import com.example.hortfruit.model.product.Availability;
 import com.example.hortfruit.model.product.Product;
 import com.example.hortfruit.model.product.dto.ProductDTO;
 import com.example.hortfruit.model.product.dto.ProductDTOResponse;
+import com.example.hortfruit.model.supplier.Supplier;
 import com.example.hortfruit.repository.product.ProductRepository;
 import com.example.hortfruit.service.supplier.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,24 @@ public class ProductService {
                         .price(product.getPrice())
                         .quantity(product.getQuantity())
                         .availability(product.getAvailability())
-                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()))
+                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()).get(0).convertToSupplier())
                         .build())
                 .collect(Collectors.toList());
     }
 
     public ProductDTOResponse createNewProduct(ProductDTO productDTO) {
 
-        Product product = productDTO.convertToProduct();
+        Supplier supplier = supplierService.findSupplierById(productDTO.getSupplierId()).get(0).convertToSupplier();
+
+        Product product = ProductDTO.builder()
+                .productName(productDTO.getProductName())
+                .price(productDTO.getPrice())
+                .quantity(productDTO.getQuantity())
+                .availability(productDTO.getAvailability())
+                .build()
+                .convertToProduct();
+
+        product.setSupplier(supplier);
 
         return productRepository.save(product).toDTO();
 
@@ -60,7 +71,7 @@ public class ProductService {
                         .price(product.getPrice())
                         .quantity(product.getQuantity())
                         .availability(product.getAvailability())
-                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()))
+                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()).get(0).convertToSupplier())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -79,7 +90,7 @@ public class ProductService {
                         .price(product.getPrice())
                         .quantity(product.getQuantity())
                         .availability(product.getAvailability())
-                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()))
+                        .supplier(supplierService.findSupplierById(product.getSupplier().getId()).get(0).convertToSupplier())
                         .build())
                 .collect(Collectors.toList());
 
@@ -115,7 +126,7 @@ public class ProductService {
                         .price(product.getPrice())
                         .quantity(product.getQuantity())
                         .availability(product.getAvailability())
-                        .supplier(supplierService.findSupplierById(supplierId))
+                        .supplier(supplierService.findSupplierById(supplierId).get(0).convertToSupplier())
                         .build())
                 .collect(Collectors.toList());
     }

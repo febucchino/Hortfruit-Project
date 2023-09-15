@@ -15,8 +15,9 @@ public class CustomerDTO {
     private String name;
     private String cpf ;
     private String telephone;
+    private String address;
 
     public Customer convertToCustomer(){
-        return new Customer(name, cpf, telephone);
+        return new Customer(name, cpf, telephone, address);
     }
 }

@@ -15,9 +15,9 @@ public class ProductDTO {
     private Double price;
     private Integer quantity;
     private Availability availability;
-    private Supplier supplier;
+    private Long supplierId;
 
     public Product convertToProduct() {
-        return new Product(productName, price, quantity, availability, supplier);
+        return new Product(productName, price, quantity, availability);
     }
 }

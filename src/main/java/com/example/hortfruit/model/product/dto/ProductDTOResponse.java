@@ -1,6 +1,7 @@
 package com.example.hortfruit.model.product.dto;
 
 import com.example.hortfruit.model.product.Availability;
+import com.example.hortfruit.model.supplier.Supplier;
 import com.example.hortfruit.model.supplier.dto.SupplierDTOResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +21,5 @@ public class ProductDTOResponse {
     private Double price;
     private Integer quantity;
     private Availability availability;
-    private List<SupplierDTOResponse> supplier;
+    private Supplier supplier;
 }

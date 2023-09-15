@@ -14,10 +14,11 @@ import javax.persistence.*;
 @Table(name = "cliente")
 public class Customer {
 
-    public Customer(String name, String cpf, String telephone) {
+    public Customer(String name, String cpf, String telephone, String address) {
         this.name = name;
         this.cpf = cpf;
         this.telephone = telephone;
+        this.address = address;
     }
 
     @Id
@@ -28,14 +29,14 @@ public class Customer {
     @Column(name = "nome")
     private String name;
 
-    private String cpf ;
+    @Column(name = "cpf")
+    private String cpf;
 
     @Column(name = "telefone")
     private String telephone;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco")
-    private Address address;
+    @JoinColumn(name = "endereco")
+    private String address;
 
     public CustomerDTOResponse toDTO(){
         return CustomerDTOResponse.builder()
@@ -43,6 +44,7 @@ public class Customer {
                 .name(getName())
                 .cpf(getCpf())
                 .telephone(getTelephone())
+                .address(getAddress())
                 .build();
     }
 }

@@ -15,12 +15,11 @@ import javax.persistence.*;
 @Table(name = "produto")
 public class Product {
 
-    public Product(String productName, Double price, Integer quantity, Availability availability, Supplier supplier) {
+    public Product(String productName, Double price, Integer quantity, Availability availability) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
         this.availability = availability;
-        this.supplier = supplier;
     }
 
     @Id
@@ -52,6 +51,7 @@ public class Product {
                 .price(getPrice())
                 .quantity(getQuantity())
                 .availability(getAvailability())
+                .supplier(supplier)
                 .build();
     }
 }
